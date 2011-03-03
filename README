@@ -1,0 +1,3 @@
+KNOWN ISSUE:
+
+* Moving NE seems to produce an issue where the ninja element moves out side of our game container.

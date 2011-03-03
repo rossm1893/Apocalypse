@@ -6,7 +6,7 @@ Date: February 27st, 2011
 <html>
 <head>
 	<title>Tile Game 1000!</title>
-  <link rel="stylesheet" href="style.css" type="text/css">
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
   <table>
@@ -26,13 +26,13 @@ Date: February 27st, 2011
   		<td><button onclick="move('SE')">SE</button></td>
   	</tr>
   </table>
+<!--
 	<p id="count">Popsicle Count: </p>
 	
 	<p id="time">Timer: </p>
-	
-	<img id="ninja" style="top: 20px; left: 300	px;" src="http://www.bestguywins.com/freegames/ultimate-sonic/sonic.gif"></img>
-	<img id="logo" src="http://t1.gstatic.com/images?q=tbn:ANd9GcTuQ5aWAXus8cblugrVu2K7wH7tYfHmP6N7hhJ9ttRY3f7LJWx4dg&t=1"></img>
-	
+		<img id="logo" src="http://t1.gstatic.com/images?q=tbn:ANd9GcTuQ5aWAXus8cblugrVu2K7wH7tYfHmP6N7hhJ9ttRY3f7LJWx4dg&t=1"></img>
+	-->
+	  <div id="ninja" style="top: 100; left: 2;"></div>
     <div id="game-container">
       <div class="tile"></div>
       <div class="tile"><div id="second" class="apop"></div></div>
@@ -54,66 +54,64 @@ Date: February 27st, 2011
       <div class="tile"><div id="third3" class="apop"></div></div>
       <div class="tile"><div id="forth3" class="apop"></div></div>
 	  
-	  <div class="tile "><div id="first4" class="apop"></div></div>
+	    <div class="tile "><div id="first4" class="apop"></div></div>
       <div class="tile "><div id="second4" class="apop"></div></div>
       <div class="tile "><div id="third4" class="apop"></div></div>
       <div class="tile "><div id="forth4" class="apop"></div></div>
-	  
-	  <div class="tile "><div id="first5" class="apop"></div></div>
+
+      <div class="tile "><div id="first5" class="apop"></div></div>
       <div class="tile "><div id="second5" class="apop"></div></div>
       <div class="tile "><div id="third5" class="apop"></div></div>
       <div class="tile "><div id="forth5" class="apop"></div></div>
-	  
-	  <div class="tile "><div id="first6" class="apop"></div></div>
+
+      <div class="tile "><div id="first6" class="apop"></div></div>
       <div class="tile "><div id="second6" class="apop"></div></div>
       <div class="tile "><div id="third6" class="apop"></div></div>
       <div class="tile "><div id="forth6" class="apop"></div></div>
-	  
-	  <div class="tile "><div id="first7" class="apop"></div></div>
+
+      <div class="tile "><div id="first7" class="apop"></div></div>
       <div class="tile "><div id="second7" class="apop"></div></div>
       <div class="tile "><div id="third7" class="apop"></div></div>
       <div class="tile "><div id="forth7" class="apop"></div></div>
-	  
-	  <div class="tile water"></div>
+
+      <div class="tile water"></div>
       <div class="tile "><div id="second8" class="apop"></div></div>
       <div class="tile "><div id="third8" class="apop"></div></div>
       <div class="tile "><div id="forth8" class="apop"></div></div>
-	  
-	  <div class="tile "><div id="first9" class="apop"></div></div>
+
+      <div class="tile "><div id="first9" class="apop"></div></div>
       <div class="tile "><div id="second9" class="apop"></div></div>
       <div class="tile "><div id="third9" class="apop"></div></div>
       <div class="tile "><div id="forth9" class="apop"></div></div>
-	  
-	  <div class="tile water"></div>
+
+      <div class="tile water"></div>
       <div class="tile water"></div>
       <div class="tile "><div id="third10" class="apop"></div></div>
       <div class="tile "><div id="forth10" class="apop"></div></div>
-	  
-	  <div class="tile water"><div id="first11"></div></div>
+
+      <div class="tile water"><div id="first11"></div></div>
       <div class="tile water"><div id="second11"></div></div>
       <div class="tile "><div id="third11" class="apop"></div></div>
       <div class="tile "><div id="forth11" class="apop"></div></div>
-    </div>
-	
-	<script type="text/javascript" src="move.js"></script>
-	
-	<script type="text/javascript" src="count.js"></script>
+  </div>
+
+	<script type="text/javascript" src="js/move.js"></script>
 	
 	<script type="text/javascript">
 	
 	var time = 0;
 	
-	function meteor(){
+	function meteor() {
 		var tiles = document.getElementsByClassName("tile");
 		var ran = Math.floor(Math.random()*48+1);
-		tiles[ran].innerHTML="<div class='lava'></div>";	
-		
-		var lavas = document.getElementsByClassName("lava");
-		for(var i = 0; i<lavas.length; i++) {
-			lavas[i].parentNode.removeChild(lavas[i]);
-		}
-		tiles[ran].innerHTML="<div class='lava2'></div>";
+		if(tiles[ran]){
+  		tiles[ran].className += " lava";
+  		if(tiles[ran].childNodes[0]){
+  		  tiles[ran].childNodes[0].style.display = 'none';
+  	  }
     }
+  }
+  
 	setInterval("meteor()", 5000);
 	//var mainChar = document.getElementById("ninja");
 	//var waters = document.getElementsByClassName("tile water");

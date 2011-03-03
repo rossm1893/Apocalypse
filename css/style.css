@@ -6,23 +6,25 @@
 
 body {
   background: #f8f8f8;
+  padding: 0;
+  margin: 0;
+  background-color: #333;
+	overflow: hidden;
 }
 table{
 	float: right;
-}
-body{
-	background-color: #333;
-	overflow: hidden;
 }
 #game-container {
   background: green;
   height: 600px;
   width: 800px;
-  margin: 0 auto;
-  border: 3px solid #333;
+  padding: 0;
+  margin: 0;
   background-image: url(http://people.emich.edu/rmontgo3/01202011/grass.jpg);
+  border: 0;
 }
 #ninja{
+  background-image: url(../images/sonic.gif);
   position: absolute; 
   z-index: 3; 
   background-position: center center;
@@ -31,6 +33,7 @@ body{
   -moz-background-size: 40px;
   height: 80px;
   width: 50px;
+  border: 0;
 }
 #count{
   float: left;
@@ -65,26 +68,11 @@ body{
 .tile.water {
   background-image: url(http://people.emich.edu/rmontgo3/01202011/Water.gif);
 }
-.lava{
-  background-image: url(http://www.flatland.com/site/textures/texture_library/images/liquids/lava.gif);
-  height: 100px;
-  width: 100px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 100px;
-  -moz-background-size: 100px;
-}
-.lava2{
+
+.tile.lava {
   background-image: url(http://pontusschonberg.net/files/custom-lava-preview.gif);
-  height: 100px;
-  width: 100px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 100px;
-  -moz-background-size: 100px;
 }
 .apop{
- /* background-image: url(http://ign.arcanel.se/icons/IST/broken_001/rejected/mario_coin.gif); */
   background-image: url(http://people.emich.edu/rmontgo3/pp3/waterfood_popsicle.gif);
   height: 100px;
   width: 100px;
