@@ -1,0 +1,101 @@
+/*  
+	Author: Ross Montgomery (E00971626)
+	COSC 231 Winter
+	Date: January 21st, 2011
+*/
+
+body {
+  background: #f8f8f8;
+}
+table{
+	float: right;
+}
+body{
+	background-color: #333;
+	overflow: hidden;
+}
+#game-container {
+  background: green;
+  height: 600px;
+  width: 800px;
+  margin: 0 auto;
+  border: 3px solid #333;
+  background-image: url(http://people.emich.edu/rmontgo3/01202011/grass.jpg);
+}
+#ninja{
+  position: absolute; 
+  z-index: 3; 
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 40px;
+  -moz-background-size: 40px;
+  height: 80px;
+  width: 50px;
+}
+#count{
+  float: left;
+  position: absolute;
+  top: 120px;
+  left: 20px;
+  color: white;
+}
+#time{
+  float: left;
+  position: absolute;
+  top: 150px;
+  left: 20px;
+  color: white;
+}
+#logo{
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  height: 120px;
+  width: 250px;
+}
+.tile {
+  float: left;
+  height: 100px;
+  width: 100px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100px;
+  -moz-background-size: 100px;
+}
+.tile.water {
+  background-image: url(http://people.emich.edu/rmontgo3/01202011/Water.gif);
+}
+.lava{
+  background-image: url(http://www.flatland.com/site/textures/texture_library/images/liquids/lava.gif);
+  height: 100px;
+  width: 100px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100px;
+  -moz-background-size: 100px;
+}
+.lava2{
+  background-image: url(http://pontusschonberg.net/files/custom-lava-preview.gif);
+  height: 100px;
+  width: 100px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100px;
+  -moz-background-size: 100px;
+}
+.apop{
+ /* background-image: url(http://ign.arcanel.se/icons/IST/broken_001/rejected/mario_coin.gif); */
+  background-image: url(http://people.emich.edu/rmontgo3/pp3/waterfood_popsicle.gif);
+  height: 100px;
+  width: 100px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 60px;
+  -moz-background-size: 60px;
+}
+.center{
+	text-align: center;
+}
+.right{
+	text-align: right;
+}
