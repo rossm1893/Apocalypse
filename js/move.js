@@ -2,17 +2,19 @@ var timeout;
 var sonic = document.getElementById("ninja");
 var game_container = document.getElementById("game-container");
 var game_container_box = getBoundingBox(game_container);
-var distance = 2;
-var speed = 5;  // Higher == slower
+var distance = 1;
+var speed = 1;  // Higher = slower
 var lastDirection;
+var sec = 0;
+var min = 0;
+
 
 function moveX(x){
   var sonic_box = getBoundingBox(sonic);
   if(atTheEdge(game_container_box, sonic_box)){
 	  stop();
 	  var currentX = parseInt(sonic.style.left);
-	  console.log(currentX + (x * -1));
-	  sonic.style.left = currentX + (x * -1);
+	  sonic.style.left = currentX + x;
   } else {
     var currentX = parseInt(sonic.style.left);
   	sonic.style.left = currentX + x;
@@ -28,7 +30,7 @@ function moveY(y){
   } else {
     var currentY = parseInt(sonic.style.top);
   	sonic.style.top = currentY + y;
-  	sonic.onchange();
+	sonic.onchange();
   }
 }
 function move(direction){
@@ -135,41 +137,80 @@ function atTheEdge(boxA, boxB) {
   var x = false;
   var y = false;
 
-  if(boxB.left == boxA.left || boxB.right == boxA.right) {
+  if(boxB.left == boxA.left || boxB.right == boxA.right ) {
     x = true;
   }
 
   if(boxB.top == boxA.top || boxB.bottom == boxA.bottom) {
     y = true;
-  }
-  
+  } 
+
   if(x || y) {
     return true;
   }
 }
 
-sonic.onchange = moved;
+function atTheEdgeOfWater(boxA, boxB) {
+  var x = false;
+  var y = false;
 
+  if(boxB.left == boxA.right || boxB.right == boxA.left ) {
+    x = true;
+  }
+
+  if(boxB.top == boxA.bottom || boxB.bottom == boxA.top) {
+    y = true;
+  } 
+
+  if(x || y) {
+    return true;
+  }
+}
+
+var waters = waterBoxes();
+
+function moveWater() {
+	var sonic_box = getBoundingBox(sonic);
+	for(var i = 0; i<waters.length; i++) {
+		var wat = waters[i][0];
+		var wat_box = waters[i][1];
+		if(collided(wat_box, sonic_box)) {
+			stop();
+		}
+	}
+}
+
+function waterBoxes() {
+	var waterBox = document.getElementsByClassName("water");
+	waters = [];
+
+	for(var i = 0; i<waterBox.length; i++) {
+		waters.push([waterBox[i], getBoundingBox(waterBox[i])]);
+	}
+	return waters;
+}
+
+sonic.onchange = moved;
 var boxes = popsicleBoxes();
 
 function moved() {
-  var sonic_box = getBoundingBox(sonic);
-
-  for (var i=0; i < boxes.length; i++) {
-    var pop = boxes[i][0];
-    var pop_box = boxes[i][1];
-    if(collided(pop_box, sonic_box)){
-      pop.style.display = 'none';
-    }
-  }
+	moveWater();
+	var sonic_box = getBoundingBox(sonic);
+	for(var i = 0; i<boxes.length; i++) {
+		var pop = boxes[i][0];
+		var pop_box = boxes[i][1];
+		if(collided(pop_box, sonic_box)){
+			pop.style.display = 'none';
+		}
+	}
 }
 
 function popsicleBoxes(){
   var popsicles = document.getElementsByClassName('apop');
-  var boxes = [];
+  boxes = [];
 
   for (var i=0; i < popsicles.length; i++) {
-    boxes.push([popsicles[i], getBoundingBox(popsicles[i])]);
+	boxes.push([popsicles[i], getBoundingBox(popsicles[i])]);
   }
   return boxes;
 }
@@ -178,8 +219,70 @@ function getBoundingBox(element) {
   if(element.offsetParent) {
     x1 = element.offsetLeft;
     y1 = element.offsetTop;
-    x2 = element.offsetLeft + element.offsetWidth;
-    y2 = element.offsetTop + element.offsetHeight;
+    x2 = (element.offsetLeft + element.offsetWidth);
+    y2 = (element.offsetTop + element.offsetHeight);
     return {left: x1, top: y1, right: x2, bottom: y2};
   }
 }
+
+ 	var time = 0;
+	var ran;
+	var ploders = explodeBoxes();
+	
+function movePlode() {
+	var sonic_box = getBoundingBox(sonic);
+	for(var i = 0; i<ploders.length; i++) {
+		var ex = ploders[i][0];
+		var ex_box = ploders[i][1];
+		if(collided(ex_box, sonic_box)) {
+			//stop();
+			alert("You were killed by an explosion!!!");
+			//window.location.reload();
+		}
+	}
+}
+function explodeBoxes() { 
+	var tiles = document.getElementsByClassName("tile");
+	ran = Math.floor(Math.random()*48+1);
+
+	var	explode = tiles[7].innerHTML = "<div class=\"explosion\"></div>";
+	var exBox = document.getElementsByClassName("explosion");
+	ploders = [];
+	
+	for(var i = 0; i<exBox.length; i++) {
+		ploders.push([exBox[i], getBoundingBox(exBox[i])]);
+	}
+	var t = setTimeout("meteorAfter()", 2000);
+
+	return ploders;
+}
+function meteorAfter() {
+	var tiles = document.getElementsByClassName("tile");
+	if(tiles[7]){
+		tiles[7].className += " lava";
+		if(tiles[7].childNodes[0]){
+			tiles[7].childNodes[0].style.display = 'none';
+		}
+	}
+}
+setInterval("explodeBoxes()", 5000);
+	
+ 
+/* function timer(){
+	sec++;
+	if(sec == 60){
+		min++;
+		sec = 0;
+	}
+	document.getElementById("time").innerHTML = "<p id=\"timer\">Timer: " + min + " minute(s) "+ sec + " Second(s)</p>";
+}
+setInterval("timer()", 1000);
+function win(){
+	var apopWin = document.getElementsByClassName("apop");
+	if(apopWin.length < 1){
+		alert("You win the game with " + count + " popsicles in " + time + "seconds");
+	}
+}
+function counter(f){
+	document.getElementById("count").innerHTML = "<p id=\"count\">Popsicle Count: " + f + "</p>";
+}  */

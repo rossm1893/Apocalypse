@@ -18,41 +18,46 @@ table{
   background: green;
   height: 600px;
   width: 800px;
-  padding: 0;
-  margin: 0;
+  top: 0px;
+  left: 0px;
+  padding: 0px;
+  margin: 0px;
   background-image: url(http://people.emich.edu/rmontgo3/01202011/grass.jpg);
-  border: 0;
+  border: 0px;
 }
 #ninja{
   background-image: url(../images/sonic.gif);
-  position: absolute; 
+  position: absolute;
   z-index: 3; 
-  background-position: center center;
+  /* background-position: center center; */
   background-repeat: no-repeat;
   background-size: 40px;
   -moz-background-size: 40px;
   height: 80px;
   width: 50px;
-  border: 0;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 #count{
-  float: left;
-  position: absolute;
-  top: 120px;
-  left: 20px;
+  float: right;
+  position: relative;
+  top: 100px;
+  left: 150px;
   color: white;
 }
 #time{
-  float: left;
-  position: absolute;
+  float: right;
+  position: relative;
   top: 150px;
-  left: 20px;
+  left: 250px; 
   color: white;
 }
 #logo{
-  position: absolute;
-  top: 10px;
-  left: 5px;
+  position: relative;
+  top: 300px;
+  left: 450px; 
+  float: right;
   height: 120px;
   width: 250px;
 }
@@ -65,10 +70,28 @@ table{
   background-size: 100px;
   -moz-background-size: 100px;
 }
-.tile.water {
-  background-image: url(http://people.emich.edu/rmontgo3/01202011/Water.gif);
-}
 
+.water {
+  background-image: url(http://people.emich.edu/rmontgo3/01202011/Water.gif);
+  height: 100px;
+  width: 100px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100px;
+  -moz-background-size: 100px;
+}
+.explosion{
+  background-image: url(http://people.emich.edu/rmontgo3/pp3/explosion_animated_gif.gif);
+  height: 100px;
+  width: 100px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100px;
+  -moz-background-size: 100px;
+}
+.tile.start {
+  background-image: url(http://people.emich.edu/rmontgo3/pp3/start);
+}
 .tile.lava {
   background-image: url(http://pontusschonberg.net/files/custom-lava-preview.gif);
 }
