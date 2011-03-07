@@ -2,19 +2,20 @@ var timeout;
 var sonic = document.getElementById("ninja");
 var game_container = document.getElementById("game-container");
 var game_container_box = getBoundingBox(game_container);
+var pops = document.getElementsByClassName("apop");
 var distance = 1;
 var speed = 1;  // Higher = slower
 var lastDirection;
 var sec = 0;
 var min = 0;
-
+var count = 0;
 
 function moveX(x){
   var sonic_box = getBoundingBox(sonic);
   if(atTheEdge(game_container_box, sonic_box)){
-	  stop();
-	  var currentX = parseInt(sonic.style.left);
-	  sonic.style.left = currentX + x;
+	stop();
+	var currentX = parseInt(sonic.style.left);
+	sonic.style.left = currentX + x;
   } else {
     var currentX = parseInt(sonic.style.left);
   	sonic.style.left = currentX + x;
@@ -167,9 +168,10 @@ function atTheEdgeOfWater(boxA, boxB) {
   }
 }
 
-var waters = waterBoxes();
+
 
 function moveWater() {
+	var waters = waterBoxes();
 	var sonic_box = getBoundingBox(sonic);
 	for(var i = 0; i<waters.length; i++) {
 		var wat = waters[i][0];
@@ -237,7 +239,7 @@ function movePlode() {
 		if(collided(ex_box, sonic_box)) {
 			//stop();
 			alert("You were killed by an explosion!!!");
-			//window.location.reload();
+			window.location.reload();
 		}
 	}
 }
@@ -245,30 +247,29 @@ function explodeBoxes() {
 	var tiles = document.getElementsByClassName("tile");
 	ran = Math.floor(Math.random()*48+1);
 
-	var	explode = tiles[7].innerHTML = "<div class=\"explosion\"></div>";
+	var	explode = tiles[ran].innerHTML = "<div class=\"explosion\"></div>";
 	var exBox = document.getElementsByClassName("explosion");
 	ploders = [];
 	
 	for(var i = 0; i<exBox.length; i++) {
 		ploders.push([exBox[i], getBoundingBox(exBox[i])]);
 	}
-	var t = setTimeout("meteorAfter()", 2000);
+	var t = setTimeout("meteorAfter()", 3000);
 
 	return ploders;
 }
 function meteorAfter() {
 	var tiles = document.getElementsByClassName("tile");
-	if(tiles[7]){
-		tiles[7].className += " lava";
-		if(tiles[7].childNodes[0]){
-			tiles[7].childNodes[0].style.display = 'none';
+	if(tiles[ran]){
+		tiles[ran].className += " lava";
+		if(tiles[ran].childNodes[0]){
+			tiles[ran].childNodes[0].style.display = 'none';
 		}
 	}
 }
 setInterval("explodeBoxes()", 5000);
 	
- 
-/* function timer(){
+function timer() {
 	sec++;
 	if(sec == 60){
 		min++;
@@ -277,12 +278,29 @@ setInterval("explodeBoxes()", 5000);
 	document.getElementById("time").innerHTML = "<p id=\"timer\">Timer: " + min + " minute(s) "+ sec + " Second(s)</p>";
 }
 setInterval("timer()", 1000);
-function win(){
+
+function win() {
 	var apopWin = document.getElementsByClassName("apop");
 	if(apopWin.length < 1){
 		alert("You win the game with " + count + " popsicles in " + time + "seconds");
 	}
 }
-function counter(f){
-	document.getElementById("count").innerHTML = "<p id=\"count\">Popsicle Count: " + f + "</p>";
-}  */
+
+
+function counter() {
+	var pop_count_one = 0;
+	var pop_count_two = 0;
+	var f = 0;
+	var get = document.getElementsByClassName("apop");
+	
+/* 	for(var i = 0; i<pops.length; i++) {
+		pop_count_one++;
+	}
+	 */
+	for(var k = 0; k<get.length; k++) {
+		pop_count_two++;
+	}
+	console.log(pop_count_two);
+	/* f = pop_count_one - pop_count_two; */
+	document.getElementById("count").innerHTML = "<p id=\"count\">Popsicle Count: " + pop_count_two + "</p>";
+}

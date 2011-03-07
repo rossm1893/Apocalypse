@@ -16,6 +16,7 @@ table{
 }
 #game-container {
   background: green;
+  position: absolute;
   height: 600px;
   width: 800px;
   top: 0px;
@@ -40,24 +41,22 @@ table{
   padding: 0px;
 }
 #count{
-  float: right;
-  position: relative;
-  top: 100px;
-  left: 150px;
+  position: absolute;
+  top: 200px;
+  left: 860px;
   color: white;
 }
 #time{
-  float: right;
-  position: relative;
+  position: absolute;
   top: 150px;
-  left: 250px; 
+  left: 860px; 
   color: white;
 }
 #logo{
-  position: relative;
-  top: 300px;
-  left: 450px; 
-  float: right;
+  position: absolute;
+  top: 0px;
+  left: 860px; 
+  float: left;
   height: 120px;
   width: 250px;
 }
@@ -81,7 +80,7 @@ table{
   -moz-background-size: 100px;
 }
 .explosion{
-  background-image: url(http://people.emich.edu/rmontgo3/pp3/explosion_animated_gif.gif);
+  background-image: url(http://people.emich.edu/rmontgo3/pp3/images/explosion_animated_gif.gif);
   height: 100px;
   width: 100px;
   background-position: center center;
@@ -90,13 +89,13 @@ table{
   -moz-background-size: 100px;
 }
 .tile.start {
-  background-image: url(http://people.emich.edu/rmontgo3/pp3/start);
+  background-image: url(http://people.emich.edu/rmontgo3/pp3/images/start);
 }
 .tile.lava {
   background-image: url(http://pontusschonberg.net/files/custom-lava-preview.gif);
 }
 .apop{
-  background-image: url(http://people.emich.edu/rmontgo3/pp3/waterfood_popsicle.gif);
+  background-image: url(http://people.emich.edu/rmontgo3/pp3/images/waterfood_popsicle.gif);
   height: 100px;
   width: 100px;
   background-position: center center;
